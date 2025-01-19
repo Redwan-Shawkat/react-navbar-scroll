@@ -1,10 +1,7 @@
-import HomeNav from "./components/HomeNav";
-import BodyNav from "./components/BodyNav";
-import Home from "./components/Home";
-import Body from "./components/Body";
+import React from "react";
 
 const App = () => {
-  const handleScrollSection = (e, sectionId) => {
+  const handleScrollToSection = (e, sectionId) => {
     e.preventDefault();
     const targetSection = document.getElementById(sectionId);
 
@@ -16,23 +13,45 @@ const App = () => {
     }
   };
 
-  const navStyle = {
-    backgroundColor: "#333",
-    width: "100%",
-    padding: "1rem",
-    position: "fixed",
-    display: "flex",
-    gap: "1rem",
-  };
-
   return (
     <div>
-      <nav style={navStyle}>
-        <HomeNav handleScrollSection={handleScrollSection} />
-        <BodyNav handleScrollSection={handleScrollSection} />
+      <nav
+        style={{
+          backgroundColor: "#333",
+          padding: "1rem",
+          position: "fixed",
+          width: "100%",
+        }}
+      >
+        <a
+          href="#home"
+          style={{ color: "white", marginRight: "1rem" }}
+          onClick={(e) => handleScrollToSection(e, "home")}
+        >
+          Home
+        </a>
+        <a
+          href="#body"
+          style={{ color: "white" }}
+          onClick={(e) => handleScrollToSection(e, "body")}
+        >
+          Body
+        </a>
       </nav>
-      <Home />
-      <Body />
+
+      <div
+        id="home"
+        style={{ height: "100vh", width: "100vw", backgroundColor: "red" }}
+      >
+        Home Section
+      </div>
+
+      <div
+        id="body"
+        style={{ height: "100vh", width: "100vw", backgroundColor: "blue" }}
+      >
+        Body Section
+      </div>
     </div>
   );
 };
